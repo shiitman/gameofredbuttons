@@ -36,16 +36,17 @@ class GameManager {
 
         this.game = false;
 
-        $(window).resize(function () {
+        window.onresize = function () {
             self.resize();
-        });
+        }
+
         this.logger = new Logger();
         this.simulations = 1;
 
-        $(document).keypress(function (event) {
+        document.onkeypress = function (event) {
             if (self.game != true)
                 return;
-            if (event.which == 13 && self.mode == 1) {
+            if (event.which == 13 && self.mode == 2) {
                 self.buttons[1].pressButton();
                 event.preventDefault();
             }
@@ -53,27 +54,27 @@ class GameManager {
                 self.buttons[0].pressButton();
                 event.preventDefault();
             }
-        });
+        };
     }
 
     resize() {
         var width = 1200;
         var height = 700;
         if (window.innerWidth < 1200) {
-            this.paper.DOM.css("left", 0);
+            this.paper.DOM.style.left = 0;
             width = 1200 / window.innerWidth * 1200;
         }
         else {
-            this.paper.DOM.css("left", (window.innerWidth - 1200) / 2);
+            this.paper.DOM.style.left = (window.innerWidth - 1200) / 2;
         }
 
         if (window.innerHeight < 700 && window.innerWidth < 1200) {
-            this.paper.DOM.css("top", 0);
+            this.paper.DOM.style.top = 0;
             height = 700 / window.innerWidth * 700;
         }
         else {
             if (window.innerHeight > 700)
-                this.paper.DOM.css("top", (window.innerHeight - 700) / 2);
+                this.paper.DOM.style.top = (window.innerHeight - 700) / 2;
         }
 
         this.paper.setViewBox(0, 0, width, height);
