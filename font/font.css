@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "Strangelove";
+    src: url("vnf-strangelove-text.ttf");
+}
+
+h1 {
+    font-family: "Strangelove"
+}
