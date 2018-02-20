@@ -33,8 +33,8 @@ class Menu {
         for (var i in players) {
             (function (j) {
                 self.choosePlayerMenu.avatars.push(self.gameManager.paper.image(players[i].image, 500 + j * 100 - 50 * (players.length - 2), 250, 100, 100).attr("opacity", 0.5));
-                self.choosePlayerMenu.avatars[j].mousein = function () { console.log("IN"); this.attr("opacity", 1); }
-                self.choosePlayerMenu.avatars[j].mousemout = function () { console.log("OUT"); var op = 0.5; if (self.selectedPlayer == j) op = 1; this.attr("opacity", op); }
+                self.choosePlayerMenu.avatars[j].mousein = function () { this.attr("opacity", 1); }
+                self.choosePlayerMenu.avatars[j].mousemout = function () { var op = 0.5; if (self.selectedPlayer == j) op = 1; this.attr("opacity", op); }
                 self.choosePlayerMenu.avatars[j].hover(function () { self.choosePlayerMenu.avatars[j].mousein() }, function () { self.choosePlayerMenu.avatars[j].mousemout() });
 
                 self.choosePlayerMenu.avatars[j].click(
@@ -86,7 +86,6 @@ class Menu {
             if (menu[i].hide)
                 menu[i].hide();
             else if (menu[i].length) {
-                console.log(menu[i])
                 this.hideMenu(menu[i]);
             }
         }

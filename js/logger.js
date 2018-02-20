@@ -27,7 +27,6 @@ class Logger {
             this.results[ad].matches += 1;
             this.results[ad].winpossibility = this.results[ad].win / this.results[ad].matches;
         }
-        console.log(this);
         localStorage.setItem("logger", JSON.stringify(this.results));
 
         for (var i in this.results) {

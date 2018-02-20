@@ -179,7 +179,7 @@ class GameManager {
         this.replay.label.hover();
 
         this.replay.label.click(function () {
-            console.log(self.menu);
+            //      console.log(self.menu);
             self.initGame(self.mode, self.menu.selectedPlayer);
         });
         this.replay.label.hover(
