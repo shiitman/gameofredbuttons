@@ -1,4 +1,4 @@
-const PLAYERS = [{ "name": "Very Stable Genius", "image": "svg/trump.svg" }, { "name": "The Shining Sun", "image": "svg/kim.svg" }];
+const PLAYERS = [{ "name": "Very Stable Genius", "image": "svg/trump.svg" }, { "name": "The Shining Sun", "image": "svg/kim.svg" }, { "name": "Mr. Novichok", "image": "svg/putin.svg" }];
 const NUCLEAR_IMAGE = "svg/nuclear-explosions.svg";
 
 class TextLabel {
@@ -80,9 +80,21 @@ class GameManager {
         this.paper.setViewBox(0, 0, width, height);
     }
 
-    initGame(mode, player) {
+    initGame(mode, player, player2) {
         this.clearScreen();
 
+		
+		if (player2==null){
+			var pl=[];
+			
+			for (var i in PLAYERS){
+				if (i!=player){
+					pl.push(i);
+				}
+			}
+			player2=pl[Math.floor(Math.random()*pl.length)];
+		}
+		
         this.nuclear = [];
         this.nuclear.push(new NuclearBlast(this, 50, 50, 500, 500));
         this.nuclear.push(new NuclearBlast(this, 650, 50, 500, 500));
@@ -97,17 +109,17 @@ class GameManager {
 
         if (mode == 1) {
             this.players.push(new HumanPlayer(this, this.buttons[0], this.nuclear[0], PLAYERS[player].name, PLAYERS[player].image));
-            this.players.push(new NuclearAI(this, this.buttons[1], this.nuclear[1], PLAYERS[1 - player].name, PLAYERS[1 - player].image));
+            this.players.push(new NuclearAI(this, this.buttons[1], this.nuclear[1], PLAYERS[player2].name, PLAYERS[player2].image));
         }
 
         if (mode == 2) {
             this.players.push(new HumanPlayer(this, this.buttons[0], this.nuclear[0], PLAYERS[player].name, PLAYERS[player].image));
-            this.players.push(new HumanPlayer(this, this.buttons[1], this.nuclear[1], PLAYERS[1 - player].name, PLAYERS[1 - player].image));
+            this.players.push(new HumanPlayer(this, this.buttons[1], this.nuclear[1], PLAYERS[player2].name, PLAYERS[player2].image));
         }
 
         if (mode == 3) {
-            this.players.push(new NuclearAI(this, this.buttons[0], this.nuclear[0], PLAYERS[0].name, PLAYERS[0].image));
-            this.players.push(new NuclearAI(this, this.buttons[1], this.nuclear[1], PLAYERS[1].name, PLAYERS[1].image));
+            this.players.push(new NuclearAI(this, this.buttons[0], this.nuclear[0], PLAYERS[player].name, PLAYERS[player].image));
+            this.players.push(new NuclearAI(this, this.buttons[1], this.nuclear[1], PLAYERS[player2].name, PLAYERS[player2].image));
         }
 
         this.label = new TextLabel(this.paper, 600, 40, "Game of Red Buttons", 50);

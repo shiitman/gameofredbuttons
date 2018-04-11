@@ -13,7 +13,7 @@ class Menu {
         this.startMenu = [];
         this.startMenu["onePlayerMode"] = this.buttonPrepare(function () { self.hideMenu(self.startMenu); self.showMenu(self.choosePlayerMenu); }, 600, 200, "One Player", 40);
         this.startMenu["twoPlayerMode"] = this.buttonPrepare(function () { self.hideMenu(self.startMenu); self.showMenu(self.choosePlayer2Menu); }, 600, 250, "Two Players", 40);
-        this.startMenu["autoSimulaton"] = this.buttonPrepare(function () { self.gameManager.initGame(3, 0); }, 600, 300, "AI Match", 40);
+        this.startMenu["autoSimulaton"] = this.buttonPrepare(function () { self.gameManager.initGame(3, Math.floor(Math.random()*PLAYERS.length)); }, 600, 300, "AI Match", 40);
         this.startMenu["help"] = this.buttonPrepare(function () { self.hideMenu(self.startMenu); self.showMenu(self.helpText); }, 600, 350, "How to play", 40);
 
         this.choosePlayerMenu = [];
